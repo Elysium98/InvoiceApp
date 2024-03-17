@@ -1,0 +1,106 @@
+<div class="container">
+  <mat-card-content>
+    <mat-card-title class="mat_title">{{ matTitle }}</mat-card-title>
+
+    <form
+      class="add_form"
+      [formGroup]="addInvoiceFormGroup"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>InvoiceNumber</mat-label>
+        <input
+          matInput
+          placeholder="Invoice number"
+          formControlName="invoiceNumber"
+        />
+        <mat-error *ngIf="hasAddError('invoiceNumber', 'required')"
+          >Invoice number required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Customer Name </mat-label>
+        <input
+          matInput
+          placeholder="Customer Name"
+          formControlName="customerName"
+        />
+        <mat-error *ngIf="hasAddError('customerName', 'required')"
+          >Customer Name required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline" *ngIf="!editMode">
+        <mat-label>Product Name </mat-label>
+        <input
+          matInput
+          placeholder="Product Name"
+          formControlName="productName"
+        />
+        <mat-error *ngIf="hasAddError('productName', 'required')"
+          >Customer Name required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline" *ngIf="!editMode">
+        <mat-label>Quantity </mat-label>
+        <input
+          matInput
+          placeholder="Quantity"
+          formControlName="quantity"
+          type="number"
+        />
+        <mat-error *ngIf="hasAddError('quantity', 'required')"
+          >Quantity required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline" *ngIf="!editMode">
+        <mat-label>Unit price </mat-label>
+        <input matInput placeholder="Unit price" formControlName="unitPrice" />
+        <mat-error *ngIf="hasAddError('unitPrice', 'required')"
+          >Unit price required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Data </mat-label>
+        <input
+          matInput
+          type="date"
+          placeholder="Invoice date"
+          formControlName="invoiceDate"
+        />
+        <mat-error *ngIf="hasAddError('invoiceDate', 'required')"
+          >Invoice date required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline" *ngIf="!editMode">
+        <mat-label>Value </mat-label>
+        <input
+          matInput
+          placeholder="Value"
+          formControlName="value"
+          type="number"
+        />
+        <mat-error *ngIf="hasAddError('value', 'required')"
+          >Value required</mat-error
+        >
+      </mat-form-field>
+
+      <div align="center">
+        <button
+          color="warn"
+          mat-raised-button
+          class="submitButton"
+          type="submit"
+          [disabled]="!addInvoiceFormGroup.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</div>

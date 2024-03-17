@@ -1,0 +1,91 @@
+<div class="invoice_container">
+  <button
+    mat-raised-button
+    class="invoice_btn"
+    (click)="openInvoiceDialogToAdd()"
+  >
+    Adăugați o factură
+  </button>
+</div>
+<div class="container">
+  <table mat-table [dataSource]="invoices" class="mat-table-invoices">
+    <ng-container matColumnDef="invoices_header">
+      <th mat-header-cell *matHeaderCellDef colspan="7" class="centered">
+        Lista de facturi
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nume client</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.customerName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="invoiceNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Numar factura</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.invoiceNumber }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="invoiceDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Factura</th>
+      <td mat-cell *matCellDef="let invoice">
+        {{ invoice.invoiceDate | date }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="invoiceDetails">
+      <th mat-header-cell *matHeaderCellDef>Detalii factura</th>
+      <td mat-cell *matCellDef="let invoice">
+        <div *ngIf="invoice.invoiceDetails">
+          <div *ngFor="let detail of invoice.invoiceDetails">
+            <p style="margin-top: 8%">Nume produs: {{ detail.productName }}</p>
+            <p>Cantitate: {{ detail.quantity }}</p>
+            <p>Pret unitar: {{ detail.unitPrice }}</p>
+            <p>Valoare: {{ detail.value }}</p>
+
+            <button
+              class="btn-edit"
+              mat-raised-button
+              (click)="openInvoiceProductDialogToEdit(detail)"
+            >
+              Editati un produs
+            </button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let invoice">
+        <div class="column_btn">
+          <button
+            mat-raised-button
+            style="margin-bottom: 5%"
+            color="primary"
+            (click)="openInvoiceDialogToEdit(invoice)"
+          >
+            Editati factura
+          </button>
+
+          <button
+            mat-raised-button
+            (click)="openInvoiceProductDialogToAdd(invoice)"
+          >
+            Adăugați un produs
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="invoices_header"></tr>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="displayedInvoicesColumns; sticky: true"
+    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedInvoicesColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 30]"
+    class="paginator"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,66 @@
+.container {
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 660px;
+  // width: 90%;
+  z-index: 0;
+  position: relative;
+  overflow: auto;
+}
+
+.btn-edit {
+  margin-bottom: 5%;
+}
+.mat-table-invoices {
+  width: 100%;
+}
+
+.paginator {
+  width: 100%;
+}
+
+.centered {
+  text-align: center;
+  font-size: 25px !important;
+}
+
+.mat-cell {
+  padding-left: 10px;
+  font-size: 16px;
+  border-right: 1px solid rgba(56, 53, 53, 0.24);
+}
+
+th {
+  /* row border */
+  border-bottom: 1px solid rgba(56, 53, 53, 0.24);
+}
+
+.mat-header-cell {
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.invoice_btn {
+  // margin-bottom: 20px;
+  left: 33%;
+  top: 30px;
+  font-size: 20px;
+  height: 50px;
+}
+
+.invoice_container {
+  display: flex;
+  justify-content: center;
+}
+
+.column_btn {
+  display: flex;
+  flex-direction: column;
+}
+
+td {
+  border-right: 1px rgba(0, 0, 0, 0.12) solid;
+}
